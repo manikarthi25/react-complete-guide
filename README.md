@@ -1,172 +1,218 @@
 # reactjs
 
-# Contributing to Create React App
+# Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/blob/master/CONTRIBUTING.md)
 
-Loving Create React App and want to get involved? Thanks! There are plenty of ways you can help.
+<img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" />
 
-Please take a moment to review this document in order to make the contribution process straightforward and effective for everyone involved.
+Create React apps with no build configuration.
 
-Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue or assessing patches and features.
+- [Creating an App](#creating-an-app) – How to create a new app.
+- [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
 
-## Core Ideas
+Create React App works on macOS, Windows, and Linux.<br>
+If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).<br>
+If you have questions or need help, please ask in [GitHub Discussions](https://github.com/facebook/create-react-app/discussions).
 
-As much as possible, we try to avoid adding configuration and flags. The purpose of this tool is to provide the best experience for people getting started with React, and this will always be our first priority. This means that sometimes we [sacrifice additional functionality](https://gettingreal.37signals.com/ch05_Half_Not_Half_Assed.php) (such as server rendering) because it is too hard to solve it in a way that wouldn’t require any configuration.
-
-We prefer **convention, heuristics, or interactivity** over configuration.<br>
-Here are a few examples of them in action.
-
-### Convention
-
-<!--alex disable easy-->
-
-Instead of letting the user specify the entry filename, we always assume it to be `src/index.js`. Rather than letting the user specify the output bundle name, we generate it, but make sure to include the content hash in it. Whenever possible, we want to leverage convention to make good choices for the user, especially in cases where it’s easy to misconfigure something.
-
-### Heuristics
-
-Normally, `npm start` runs on port `3000`, and this is not explicitly configurable. However, some environments like cloud IDEs want the programs to run on a specific port to serve their output. We want to play well with different environments, so Create React App reads `PORT` environment variable and prefers it when it is specified. The trick is that we know cloud IDEs already specify it automatically, so there is no need for the user to do anything. Create React App relies on heuristics to do the right thing depending on environment.
-
-<!--alex disable just-->
-
-Another example of this is how `npm test` normally launches the watcher, but if the `CI` environment variable is set, it will run tests once. We know that popular CI environments set this variable, so the user doesn’t need to do anything. It just works.
-
-### Interactivity
-
-We prefer to add interactivity to the command line interface rather than add configuration flags. For example, `npm start` will attempt to run with port `3000` by default, but it may be busy. Many other tools fail in this case and ask that you pass a different port, but Create React App will display a prompt asking if you’d like to run the app on the next available port.
-
-Another example of interactivity is `npm test` watcher interface. Instead of asking people to pass command line flags for switching between test runner modes or search patterns, we print a hint with keys that you can press during the test session to instruct watcher what to do. Jest supports both flags and interactive CLI but Create React App prefers long-running sessions to keep user immersed in the flow over short-running sessions with different flags.
-
-### Breaking the Rules
-
-No rules are perfect. Sometimes we may introduce flags or configuration if we believe the value is high enough to justify the complexity. For example, we know that apps may be hosted paths different from the root, and we need to support this use case. However, we still try to fall back to heuristics when possible. In this example, we ask that you specify `homepage` in `package.json`, and infer the correct path based on it. We also nudge the user to fill out the `homepage` after the build, so the user becomes aware that the feature exists.
-
-## Submitting a Pull Request
-
-Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.
-
-Please **ask first** if somebody else is already working on this or the core developers think your feature is in-scope for Create React App. Generally always have a related issue with discussions for whatever you are including.
-
-Please also provide a **test plan**, i.e. specify how you verified that your addition works.
-
-## Folder Structure of Create React App
-
-`create-react-app` is a monorepo, meaning it is divided into independent sub-packages.<br>
-These packages can be found in the [`packages/`](https://github.com/facebook/create-react-app/tree/master/packages) directory.
-
-### Overview of directory structure
-
-```
-packages/
-  babel-preset-react-app/
-  create-react-app/
-  eslint-config-react-app/
-  react-dev-utils/
-  react-scripts/
-```
-
-### Package Descriptions
-
-#### [babel-preset-react-app](https://github.com/facebook/create-react-app/tree/master/packages/babel-preset-react-app)
-
-This package is a babel preset intended to be used with `react-scripts`.<br>
-It targets platforms that React is designed to support (IE 11+) and enables experimental features used heavily at Facebook.<br>
-This package is enabled by default for all `create-react-app` scaffolded applications.
-
-#### [create-react-app](https://github.com/facebook/create-react-app/tree/master/packages/create-react-app)
-
-The global CLI command code can be found in this directory, and shouldn't often be changed. It should run on Node 0.10+.
-
-#### [eslint-config-react-app](https://github.com/facebook/create-react-app/tree/master/packages/eslint-config-react-app)
-
-This package contains a conservative set of rules focused on making errors apparent and enforces no style rules.<br>
-This package is enabled by default for all `create-react-app` scaffolded applications.
-
-#### [react-dev-utils](https://github.com/facebook/create-react-app/tree/master/packages/react-dev-utils)
-
-This package contains utilities used for `react-scripts` and sibling packages.<br>
-Its main purpose is to conceal code which the user shouldn't be burdened with upon ejecting.
-
-#### [react-scripts](https://github.com/facebook/create-react-app/tree/master/packages/react-scripts)
-
-This package is the heart of the project, which contains the scripts for setting up the development server, building production builds, configuring all software used, etc.<br>
-All functionality must be retained (and configuration given to the user) if they choose to eject.
-
-## Setting Up a Local Copy
-
-1. Clone the repo with `git clone https://github.com/facebook/create-react-app`
-
-2. Run `yarn` in the root `create-react-app` folder.
-
-Once it is done, you can modify any file locally and run `yarn start`, `yarn test` or `yarn build` like you can in a generated project. It will serve the application from the files located in `packages/cra-template/template`.
-
-If you want to try out the end-to-end flow with the global CLI, you can do this too:
+## Quick Overview
 
 ```sh
-yarn create-react-app my-app
+npx create-react-app my-app
+cd my-app
+npm start
+```
+
+If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, we recommend you uninstall the package using `npm uninstall -g create-react-app` or `yarn global remove create-react-app` to ensure that npx always uses the latest version.
+
+_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
+
+Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
+When you’re ready to deploy to production, create a minified bundle with `npm run build`.
+
+<p align='center'>
+<img src='https://cdn.jsdelivr.net/gh/facebook/create-react-app@27b42ac7efa018f2541153ab30d63180f5fa39e0/screencast.svg' width='600' alt='npm start'>
+</p>
+
+### Get Started Immediately
+
+You **don’t** need to install or configure tools like webpack or Babel.<br>
+They are preconfigured and hidden so that you can focus on the code.
+
+Create a project, and you’re good to go.
+
+## Creating an App
+
+**You’ll need to have Node 8.16.0 or Node 10.16.0 or later version on your local development machine** (but it’s not required on the server). You can use [nvm](https://github.com/creationix/nvm#installation) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to switch Node versions between different projects.
+
+To create a new app, you may choose one of the following methods:
+
+### npx
+
+```sh
+npx create-react-app my-app
+```
+
+_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a package runner tool that comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
+
+### npm
+
+```sh
+npm init react-app my-app
+```
+
+_`npm init <initializer>` is available in npm 6+_
+
+### Yarn
+
+```sh
+yarn create react-app my-app
+```
+
+_[`yarn create <starter-kit-package>`](https://yarnpkg.com/lang/en/docs/cli/create/) is available in Yarn 0.25+_
+
+It will create a directory called `my-app` inside the current folder.<br>
+Inside that directory, it will generate the initial project structure and install the transitive dependencies:
+
+```
+my-app
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js
+    └── setupTests.js
+```
+
+No configuration or complicated folder structures, only the files you need to build your app.<br>
+Once the installation is done, you can open your project folder:
+
+```sh
 cd my-app
 ```
 
-and then run `yarn start` or `yarn build`.
+Inside the newly created project, you can run some built-in commands:
 
-## Contributing to E2E (end to end) tests
+### `npm start` or `yarn start`
 
-**TL;DR** use the command `yarn e2e:docker` to run unit and e2e tests.
+Runs the app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-More detailed information are in the dedicated [README](/test/README.md).
+The page will automatically reload if you make changes to the code.<br>
+You will see the build errors and lint warnings in the console.
 
-### CI testing with private packages
+<p align='center'>
+<img src='https://cdn.jsdelivr.net/gh/marionebl/create-react-app@9f6282671c54f0874afd37a72f6689727b562498/screencast-error.svg' width='600' alt='Build errors'>
+</p>
 
-**create-react-app** relies on main registry to fetch all dependencies, but, if you are in the need to usage of custom private packages that need to be fetch while running E2E test you might need a different configuration.
+### `npm test` or `yarn test`
 
-#### Customizing E2E registry configuration
+Runs the test watcher in an interactive mode.<br>
+By default, runs tests related to files changed since the last commit.
 
-We use [verdaccio](https://github.com/verdaccio/verdaccio) to emulate packages publishing in a registry using a default configuration. You might modify the current behaviour by editing the file `task/verdaccio.yaml`.
+[Read more about testing.](https://facebook.github.io/create-react-app/docs/running-tests)
 
-For more information about the configuration check out the [Verdaccio documentation](https://verdaccio.org/docs/en/configuration).
+### `npm run build` or `yarn build`
 
-## Tips for contributors using Windows
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The scripts in tasks folder and other scripts in `package.json` will not work in Windows out of the box. However, using [Bash on windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) makes it easier to use those scripts without any workarounds. The steps to do so are detailed below:
+The build is minified and the filenames include the hashes.<br>
 
-### Install Bash on Ubuntu on Windows
+Your app is ready to be deployed.
 
-A good step by step guide can be found [here](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
+## User Guide
 
-### Install Node.js and yarn
+You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).
 
-Even if you have node and yarn installed on your windows, it would not be accessible from the bash shell. You would have to install it again. Installing via [`nvm`](https://github.com/creationix/nvm#install-script) is recommended.
+## How to Update to New Versions?
 
-### Line endings
+Please refer to the [User Guide](https://facebook.github.io/create-react-app/docs/updating-to-new-releases) for this and other information.
 
-By default git would use `CRLF` line endings which would cause the scripts to fail. You can change it for this repo only by setting `autocrlf` to false by running `git config core.autocrlf false`. You can also enable it for all your repos by using the `--global` flag if you wish to do so.
+## Philosophy
 
-## Cutting a Release
+- **One Dependency:** There is only one build dependency. It uses webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
 
-1. Tag all merged pull requests that go into the release with the relevant milestone. Each merged PR should also be labeled with one of the [labels](https://github.com/facebook/create-react-app/labels) named `tag: ...` to indicate what kind of change it is. **Make sure all breaking changes are correctly labelled with `tag: breaking change`.**
-2. Close the milestone and create a new one for the next release.
-3. In most releases, only `react-scripts` needs to be released. If you don’t have any changes to the `packages/create-react-app` folder, you don’t need to bump its version or publish it (the publish script will publish only changed packages).
-4. Note that files in `packages/create-react-app` should be modified with extreme caution. Since it’s a global CLI, any version of `create-react-app` (global CLI) including very old ones should work with the latest version of `react-scripts`.
-5. Run `yarn compile:lockfile`. The command will generate an updated lockfile in `packages/create-react-app` that should be committed.
-6. Create a change log entry for the release:
+- **No Configuration Required:** You don't need to configure anything. A reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
 
-- You'll need an [access token for the GitHub API](https://help.github.com/articles/creating-an-access-token-for-command-line-use/). Save it to this environment variable: `export GITHUB_AUTH="..."`
-- Run `yarn changelog`. The command will find all the labeled pull requests merged since the last release and group them by the label and affected packages, and create a change log entry with all the changes and links to PRs and their authors. Copy and paste it to `CHANGELOG.md`.
-- Add a four-space indented paragraph after each non-trivial list item, explaining what changed and why. For each breaking change also write who it affects and instructions for migrating existing code.
-- Maybe add some newlines here and there. Preview the result on GitHub to get a feel for it. Changelog generator output is a bit too terse for my taste, so try to make it visually pleasing and well grouped.
+- **No Lock-In:** You can “eject” to a custom setup at any time. Run a single command, and all the configuration and build dependencies will be moved directly into your project, so you can pick up right where you left off.
 
-7. Make sure to include “Migrating from ...” instructions for the previous release. Often you can copy and paste them.
-8. Run `npm run publish`. (It has to be `npm run publish` exactly, not `npm publish` or `yarn publish`.)
-9. Wait for a long time, and it will get published. Don’t worry that it’s stuck. In the end the publish script will prompt for versions before publishing the packages.
-10. After publishing, create a GitHub Release with the same text as the changelog entry. See previous Releases for inspiration.
+## What’s Included?
 
-Make sure to test the released version! If you want to be extra careful, you can publish a prerelease by running `npm run publish -- --canary --exact --preid next --dist-tag=next --force-publish=* minor` instead of `npm run publish`.
+Your environment will have everything you need to build a modern single-page React app:
 
-## Releasing the Docs
+- React, JSX, ES6, TypeScript and Flow syntax support.
+- Language extras beyond ES6 like the object spread operator.
+- Autoprefixed CSS, so you don’t need `-webkit-` or other prefixes.
+- A fast interactive unit test runner with built-in support for coverage reporting.
+- A live development server that warns about common mistakes.
+- A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.
+- An offline-first [service worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers) and a [web app manifest](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/), meeting all the [Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app) criteria. (_Note: Using the service worker is opt-in as of `react-scripts@2.0.0` and higher_)
+- Hassle-free updates for the above tools with a single dependency.
 
-1. Go to the `docusaurus/website` directory
-2. Run `yarn build`
-3. You'll need an [access token for the GitHub API](https://help.github.com/articles/creating-an-access-token-for-command-line-use/). Save it to this environment variable: `export GITHUB_AUTH="..."`
-4. Run `GIT_USER=<GITHUB_USERNAME> CURRENT_BRANCH=master USE_SSH=true yarn deploy`
+Check out [this guide](https://github.com/nitishdayal/cra_closer_look) for an overview of how these tools fit together.
 
----
+The tradeoff is that **these tools are preconfigured to work in a specific way**. If your project needs more customization, you can ["eject"](https://facebook.github.io/create-react-app/docs/available-scripts#npm-run-eject) and customize it, but then you will need to maintain this configuration.
 
-_Many thanks to [h5bp](https://github.com/h5bp/html5-boilerplate/blob/master/.github/CONTRIBUTING.md) for the inspiration with this contributing guide_
+## Popular Alternatives
+
+Create React App is a great fit for:
+
+- **Learning React** in a comfortable and feature-rich development environment.
+- **Starting new single-page React applications.**
+- **Creating examples** with React for your libraries and components.
+
+Here are a few common cases where you might want to try something else:
+
+- If you want to **try React** without hundreds of transitive build tool dependencies, consider [using a single HTML file or an online sandbox instead](https://reactjs.org/docs/try-react.html).
+
+- If you need to **integrate React code with a server-side template framework** like Rails, Django or Symfony, or if you’re **not building a single-page app**, consider using [nwb](https://github.com/insin/nwb), or [Neutrino](https://neutrino.js.org/) which are more flexible. For Rails specifically, you can use [Rails Webpacker](https://github.com/rails/webpacker). For Symfony, try [Symfony's webpack Encore](https://symfony.com/doc/current/frontend/encore/reactjs.html).
+
+- If you need to **publish a React component**, [nwb](https://github.com/insin/nwb) can [also do this](https://github.com/insin/nwb#react-components-and-libraries), as well as [Neutrino's react-components preset](https://neutrino.js.org/packages/react-components/).
+
+- If you want to do **server rendering** with React and Node.js, check out [Next.js](https://nextjs.org/) or [Razzle](https://github.com/jaredpalmer/razzle). Create React App is agnostic of the backend, and only produces static HTML/JS/CSS bundles.
+
+- If your website is **mostly static** (for example, a portfolio or a blog), consider using [Gatsby](https://www.gatsbyjs.org/) or [Next.js](https://nextjs.org/). Unlike Create React App, Gatsby pre-renders the website into HTML at build time. Next.js supports both server rendering and pre-rendering.
+
+- Finally, if you need **more customization**, check out [Neutrino](https://neutrino.js.org/) and its [React preset](https://neutrino.js.org/packages/react/).
+
+All of the above tools can work with little to no configuration.
+
+If you prefer configuring the build yourself, [follow this guide](https://reactjs.org/docs/add-react-to-an-existing-app.html).
+
+## React Native
+
+Looking for something similar, but for React Native?<br>
+Check out [Expo CLI](https://github.com/expo/expo-cli).
+
+## Contributing
+
+We'd love to have your helping hand on `create-react-app`! See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+
+## Credits
+
+This project exists thanks to all the people who [contribute](CONTRIBUTING.md).<br>
+<a href="https://github.com/facebook/create-react-app/graphs/contributors"><img src="https://opencollective.com/create-react-app/contributors.svg?width=890&button=false" /></a>
+
+Thanks to [Netlify](https://www.netlify.com/) for hosting our documentation.
+
+## Acknowledgements
+
+We are grateful to the authors of existing related projects for their ideas and collaboration:
+
+- [@eanplatter](https://github.com/eanplatter)
+- [@insin](https://github.com/insin)
+- [@mxstbr](https://github.com/mxstbr)
+
+## License
+
+Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
