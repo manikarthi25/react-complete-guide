@@ -1,7 +1,9 @@
 .Person {
+    display:block;
     width: 60%;
-    margin: 10px;
+    margin: 15px;
     padding: 10px;
     border: 2px solid rebeccapurple;
     box-shadow: 0 2px 3px rosybrown;
+    text-align: center;
 }

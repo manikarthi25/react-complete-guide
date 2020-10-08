@@ -5,14 +5,14 @@ import './App.css'
 //import ClassComponentExample from './ClassComponentExample';
 //import TernaryOperator from './TernaryOperator';
 //import IfCondition from  './IfCondition';
-//import MapListExample from './MapListExample';
-import Assignment2 from './Assignment2';
+import MapListExample from './MapListExample';
+//import Assignment2 from './Assignment2';
 
 class App extends React.Component {
     render() {
         return(
             <div>
-                <Assignment2/>
+                <MapListExample/>
             </div>
         );
     }
