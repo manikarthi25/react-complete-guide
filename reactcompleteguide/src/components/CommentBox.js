@@ -22,8 +22,9 @@ class CommentBox extends Component {
 
         this.setState({
             comment:''
-        })
-    }
+        });
+    };
+    
     render() {
 
         const inlineStyle = {
@@ -35,16 +36,13 @@ class CommentBox extends Component {
         }
 
         return(
-            <div style = {inlineStyle}>
-            <form onSubmit = { this.onSubmitHandle }>
+            <form onSubmit = { this.onSubmitHandle } style = {inlineStyle}>
                 <h1>Add a comment</h1>
                 <textarea onChange = { this.changeHandle } value = { this.state.comment } />
                 <div>
                     <button>Submit Comment</button>
                 </div>
-                <h1>Comment Box</h1>
             </form>
-            </div>
         );
     };
 
