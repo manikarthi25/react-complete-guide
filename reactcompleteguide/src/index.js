@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App';
+//import App from './containers/App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App title="User Screen"/>,  document.getElementById('root'));

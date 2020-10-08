@@ -12,6 +12,7 @@ const Persons = (props) => {
                                     key = {person.id}
                                     name = {person.name}
                                     age = {person.age}
+                                   
                                     />
                     })
                 }

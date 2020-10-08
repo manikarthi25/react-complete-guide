@@ -66,3 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Redux Install
+npm install --save redux react-redux
+
+### Enzyme insall 
+npm install --save enzyme enzyme-adapter-react-16
+16 - react verson
