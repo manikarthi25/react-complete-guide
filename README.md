@@ -144,3 +144,5 @@ npm install --save redux react-redux
 ### Enzyme insall 
 npm install --save enzyme enzyme-adapter-react-16
 16 - react verson
+
+Please refer to the [Enzyme Guide](https://airbnb.io/enzyme) 
